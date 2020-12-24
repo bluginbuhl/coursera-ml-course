@@ -193,7 +193,7 @@ $
 The value of $\theta$ that minimizes $y$ can then be computed as:
 
 $
-\theta = (X^TX^{-1})X^Ty
+\theta = (X^TX)^{-1}X^Ty
 $
 
 So for $m$ *examples* $(x^{(1)},y^{(1)}, \cdots, (x^{(m)},y^{(m)})$ and $n$ *features*:
