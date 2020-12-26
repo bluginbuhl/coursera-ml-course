@@ -318,9 +318,11 @@ The second implementation will run much more efficiently, and is simpler to repr
 Another example using gradient descent. Recall the update rules for $\theta$ (for $n=2$ features):
 
 $
+\begin{aligned}
 \quad \theta_0 := \theta_0 -\alpha \frac{1}{m}\sum\limits_{i=1}^{m}\left(h_\theta(x^{(i)}-y^{(i)}\right)x_0^{(i)} \\
 \quad \theta_1 := \theta_1 -\alpha \frac{1}{m}\sum\limits_{i=1}^{m}\left(h_\theta(x^{(i)}-y^{(i)}\right)x_1^{(i)} \\
 \quad \theta_2 := \theta_2 -\alpha \frac{1}{m}\sum\limits_{i=1}^{m}\left(h_\theta(x^{(i)}-y^{(i)}\right)x_2^{(i)}
+\end{aligned}
 $
 
 To vectorize, we think of $\theta$ as a vector, and our update rules become $\theta := \theta - \alpha\delta$, where $\delta$ is also a vector (and is just the sum term from the equations above). So $\delta_0=\frac{1}{m}\textstyle\sum_{i=1}^{m}\left(h_\theta(x^{(i)}-y^{(i)}\right)x_0^{(i)}$, *etc*.
