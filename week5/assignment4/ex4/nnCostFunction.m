@@ -62,22 +62,37 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% create a matrix Y for the classes in the training data
+I = eye(num_labels);
+Y = zeros(m, num_labels);
+for i = 1:m
+  Y(i, :) = I(y(i), :);
+end
 
+% forward propagation for 3 layers
+a1 = [ones(m, 1) X];  % add ones to features
+z2 = a1 * Theta1';
+a2 = [ones(size(z2, 1), 1) sigmoid(z2)];
+z3 = a2 * Theta2';
+a3 = h = sigmoid(z3);
 
+% calculate the regularization correction term
+reg_correction = (lambda/(2*m))*(sum(sum(Theta1(:, 2:end).^2, 2)) + sum(sum(Theta2(:, 2:end).^2, 2)));
 
+% calculate the cost and add the regularization correction
+J = -(1/m)*sum(sum((Y).*log(h) + (1 - Y).*log(1 - h), 2)) + reg_correction;
 
+% calculate the error for each layer
+delta3 = a3 - Y;
+delta2 = (delta3*Theta2 .* sigmoidGradient([ones(size(z2, 1), 1) z2]))(:, 2:end);
 
+% calculate the capital Delta terms
+Delta1 = delta2'*a1;
+Delta2 = delta3'*a2;
 
-
-
-
-
-
-
-
-
-
-
+% calculate the accumulators
+Theta1_grad = Delta1./m + (lambda/m)*[zeros(size(Theta1, 1), 1) Theta1(:, 2:end)];
+Theta2_grad = Delta2./m + (lambda/m)*[zeros(size(Theta2, 1), 1) Theta2(:, 2:end)];
 
 
 % -------------------------------------------------------------

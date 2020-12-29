@@ -183,7 +183,8 @@ fprintf('\nTraining Neural Network... \n')
 
 %  After you have completed the assignment, change the MaxIter to a larger
 %  value to see how more training helps.
-options = optimset('MaxIter', 50);
+% 50 iterations = 95% accuracy; 500 = 99.6% accuracy
+options = optimset('MaxIter', 500);
 
 %  You should also try different values of lambda
 lambda = 1;
