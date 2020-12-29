@@ -21,13 +21,24 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% add a_0 = 1
+a1 = [ones(m, 1) X];
 
+% compute output from layer 1 to layer 2
+z2 = a1 * Theta1';
 
+% add a_0 = 1, compute g(z2)
+a2 = [ones(size(z2), 1) sigmoid(z2)];
 
+z3 = a2 * Theta2';
 
+a3 = sigmoid(z3);
 
+% obtain prediction and index of prediction
+[predict_max, index_max] = max(a3, [], 2);
 
-
+% return the predicted value to the max index, with 1=1, 2=2, ..., 10=0.
+p = index_max;
 
 % =========================================================================
 
